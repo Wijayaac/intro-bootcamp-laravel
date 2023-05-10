@@ -10,6 +10,7 @@
         @vite(['ressources/js/app.js','resources/css/home.scss'])
     </head>
     <body>
+        
         <h1>Hello test</h1>
     </body>
 </html>
