@@ -15,5 +15,3 @@ function showCompleteText() {
         moreText.style.display = "inline";
     }
 }
-
-console.log("test");

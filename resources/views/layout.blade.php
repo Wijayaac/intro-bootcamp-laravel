@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +9,23 @@
     {{-- Assets --}}
     <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    @vite(['ressources/js/app.js','resources/css/app.css'])
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap-grid.min.css') }}">
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
     <title>Online Library - @yield('title')</title>
 </head>
+
 <body>
     <div class="container">
-        
+        @include('components.header')
 
+        @yield('content')
+
+        @section('pagination')
+
+        @show
+
+        @include('components.footer')
     </div>
 </body>
+
 </html>
