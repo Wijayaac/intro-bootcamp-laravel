@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap-grid.min.css') }}">
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/js/app.js', 'resources/scss/app.scss'])
     <title>Online Library - @yield('title')</title>
 </head>
 

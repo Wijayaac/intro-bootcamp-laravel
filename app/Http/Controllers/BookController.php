@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class BookController extends Controller
 {
@@ -23,21 +24,24 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = $this->books;
-
         return view("index", [
-            'books' => $books
+            'books' => $this->books
         ]);
     }
 
     public function detail($id)
     {
-        $selectedBook = [];
-        foreach ($this->books as $book) {
-            if ($book["id"] == $id) {
-                $selectedBook = $book;
-            }
+
+        if (!isset($id)) {
+            return view('index', [
+                "books" => $this->books
+            ]);
         }
+
+        $selectedBook = Arr::first($this->books, function ($value) use ($id) {
+            return $value["id"] == $id;
+        });
+
         return view('detail', [
             "book" => $selectedBook
         ]);

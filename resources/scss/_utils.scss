@@ -1,11 +1,5 @@
-@import './home.scss';
-
 body {
     padding: 20px 0px;
-}
-
-.container {
-    margin-left: 10;
 }
 
 #center-content {
@@ -14,10 +8,6 @@ body {
 
 .h-link {
     text-decoration: underline;
-}
-
-#synopsis {
-    margin-bottom: 0;
 }
 
 #more {
@@ -147,4 +137,13 @@ body {
 
 .pl-50 {
     padding-left: 50px;
+}
+
+@mixin img-ratio() {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 }
