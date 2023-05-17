@@ -8,25 +8,26 @@
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
                         <div class="main-product__thumbnail">
-                            <img src="{{ $book['image'] }}" alt="{{ $book['title'] }}" width="250px">
+                            <img src="{{ $book['image_path'] }}" alt="{{ $book['title'] }}" width="250px">
                         </div>
                     </div>
 
                     <div class="col-sm-6 col-md-8">
                         <div class="main-product__detail">
                             <h2><b>{{ $book['title'] }}</b></h2>
-                            <p><small>by</small> <a href="#" class="h-link">Humanoid</a></p>
+                            <p><small>by</small> <a href="#" class="h-link">{{ $book['author'] }}</a></p>
                             <div class="pt-20">
-                                <p>Publisher <a href="#" class="h-link">Penguin</a></p>
-                                <p>Category <a href="#" class="h-link">Novel</a></p>
-                                <p>Pages <b>650</b></p>
-                                <p>Language <a href="#" class="h-link">English</a></p>
-                                <p>Publish Date <a href="#" class="h-link">2020</a></p>
-                                <p>Subjects <a href="#" class="h-link">Fantasy</a>, <a href="#" class="h-link">Fiction</a>, <a href="#" class="h-link">Good and Evil</a></p>
+                                <p>Publisher : <a href="#" class="h-link">{{ $book['publisher'] }}</a></p>
+                                <p>Category : <a href="#" class="h-link">{{ $book['category'] }}</a></p>
+                                <p>Pages : <b>{{ $book['pages'] }}</b></p>
+                                <p>Language : <a href="#" class="h-link">{{ $book['language'] }}</a></p>
+                                <p>Publish Date : {{ $book['publish_date'] }}</a></p>
+                                <p>Subjects : {!! str_replace(' ', ',', $book['subjects']) !!}</p>
+
                                 <p id="synopsis" class="main-product__description">
-                                    {{ $book['short_desc'] }}
+                                    {{ $book['desc'] }}
                                 </p>
-                                <p>ISBN <b>109128982384</b></p>
+                                <p>ISBN <b>{{ $book['isbn'] }}</b></p>
 
                                 <div class="main-product__cta">
                                     <a href="#" class="btn btn-default mt-10 mb-10" role="button">Borrow</a>
