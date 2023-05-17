@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Book extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $dates = ['publish_date'];
     protected $fillable = [
         "isbn",
         "title",
