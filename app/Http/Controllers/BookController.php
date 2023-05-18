@@ -25,7 +25,7 @@ class BookController extends Controller
         $books = new Book();
         $selectedBook = $books->query()->where("isbn", '=', $id)->first();
         if ($selectedBook) {
-            return view('detail', [
+            return view('books.detail', [
                 "book" => $selectedBook
             ]);
         }
@@ -59,7 +59,14 @@ class BookController extends Controller
     {
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $book = Book::find($id);
+        // $selectedBook = $book->where('isbn', '=', $id)->first();
+        if ($book) {
+            $book->delete();
+        }
+
+        return redirect('/');
     }
 }

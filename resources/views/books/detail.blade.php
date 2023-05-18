@@ -31,6 +31,11 @@
 
                                 <div class="main-product__cta">
                                     <a href="#" class="btn btn-default mt-10 mb-10" role="button">Borrow</a>
+                                    <form action="{{ url('/books', ['book' => $book['isbn']]) }}" method="post">
+                                        <input class="btn btn-danger" type="submit" value="Delete" />
+                                        <input type="hidden" name="_method" value="delete" />
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    </form>
                                 </div>
                             </div>
                         </div>

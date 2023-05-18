@@ -16,13 +16,13 @@
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search">
                     <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"
-                                aria-hidden="true"></span></button>
+                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </div>
                 </div>
                 <!-- <button type="submit" class="btn btn-default"></button> -->
             </form>
             <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ route('books.create') }}">Add Book</a></li>
                 <li><a href="./login.html">Login</a></li>
                 <li class="disabled"><a href="#">Signup</a></li>
             </ul>
