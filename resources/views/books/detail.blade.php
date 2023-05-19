@@ -31,6 +31,9 @@
 
                                 <div class="main-product__cta">
                                     <a href="#" class="btn btn-default mt-10 mb-10" role="button">Borrow</a>
+                                </div>
+                                <div class="main-product__action d-flex">
+                                    <a href="{{ route('books.edit', ['book' => $book['isbn']]) }}" class="btn btn-warning mx-2">Edit</a>
                                     <form action="{{ url('/books', ['book' => $book['isbn']]) }}" method="post">
                                         <input class="btn btn-danger" type="submit" value="Delete" />
                                         <input type="hidden" name="_method" value="delete" />

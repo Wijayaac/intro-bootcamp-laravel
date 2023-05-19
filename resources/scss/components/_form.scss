@@ -1,0 +1,28 @@
+.form {
+    max-width: 70%;
+    margin: 0 auto;
+
+    button {
+        min-width: 240px;
+        padding: 10px 20px;
+        margin: 20px 0;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+}
+
+.input {
+    &__field {
+        label {
+            display: block;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px 15px;
+            margin: 12px 0;
+        }
+    }
+}

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookPostRequest;
 use App\Models\Book;
-use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
@@ -19,11 +18,10 @@ class BookController extends Controller
         ]);
     }
 
-    public function detail($id)
+    public function show($id)
     {
 
-        $books = new Book();
-        $selectedBook = $books->query()->where("isbn", '=', $id)->first();
+        $selectedBook = Book::find($id);
         if ($selectedBook) {
             return view('books.detail', [
                 "book" => $selectedBook
@@ -47,22 +45,32 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function show()
+    public function edit($id)
     {
+        $book = Book::find($id);
+        if (!$book) {
+            return redirect('/');
+        }
+
+        return view('books.edit', [
+            'book' => $book
+        ]);
     }
 
-    public function edit()
+    public function update(BookPostRequest $request)
     {
-    }
+        $validated = $request->validated();
+        $book = Book::find($validated['isbn']);
 
-    public function update()
-    {
+        if ($book) {
+            $book->update($validated);
+        }
+        return redirect()->route('books.index');
     }
 
     public function destroy($id)
     {
         $book = Book::find($id);
-        // $selectedBook = $book->where('isbn', '=', $id)->first();
         if ($book) {
             $book->delete();
         }
