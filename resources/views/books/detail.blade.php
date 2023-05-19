@@ -33,11 +33,11 @@
                                     <a href="#" class="btn btn-default mt-10 mb-10" role="button">Borrow</a>
                                 </div>
                                 <div class="main-product__action d-flex">
-                                    <a href="{{ route('books.edit', ['book' => $book['isbn']]) }}" class="btn btn-warning mx-2">Edit</a>
-                                    <form action="{{ url('/books', ['book' => $book['isbn']]) }}" method="post">
+                                    <a href="{{ route('books.edit', ['isbn' => $book['isbn']]) }}" class="btn btn-warning mx-2">Edit</a>
+                                    <form action="{{ url('/books', ['isbn' => $book['isbn']]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
                                         <input class="btn btn-danger" type="submit" value="Delete" />
-                                        <input type="hidden" name="_method" value="delete" />
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form>
                                 </div>
                             </div>

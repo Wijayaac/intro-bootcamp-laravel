@@ -18,10 +18,10 @@ class BookController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show($isbn)
     {
 
-        $selectedBook = Book::find($id);
+        $selectedBook = Book::find($isbn);
         if ($selectedBook) {
             return view('books.detail', [
                 "book" => $selectedBook
@@ -45,9 +45,9 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function edit($id)
+    public function edit($isbn)
     {
-        $book = Book::find($id);
+        $book = Book::find($isbn);
         if (!$book) {
             return redirect('/');
         }
@@ -57,20 +57,19 @@ class BookController extends Controller
         ]);
     }
 
-    public function update(BookPostRequest $request)
+    public function update(BookPostRequest $request, $isbn)
     {
         $validated = $request->validated();
-        $book = Book::find($validated['isbn']);
-
+        $book = Book::find($isbn);
         if ($book) {
             $book->update($validated);
         }
         return redirect()->route('books.index');
     }
 
-    public function destroy($id)
+    public function destroy($isbn)
     {
-        $book = Book::find($id);
+        $book = Book::find($isbn);
         if ($book) {
             $book->delete();
         }
