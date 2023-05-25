@@ -46,6 +46,9 @@
 @endif
     </textarea>
  </div>
- <button class="btn btn-success" type="submit">
-     {{ $isUpdate ? 'Update' : 'Save' }}
- </button>
+
+ @auth
+     <button class="btn btn-success" type="submit">
+         {{ $isUpdate ? 'Update' : 'Save' }}
+     </button>
+ @endauth

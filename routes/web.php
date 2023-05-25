@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [BookController::class, 'index'])->name('index');
 Route::name('books.')->prefix('books')->group(function () {
-    Route::post('/', [BookController::class, 'store'])->name('store');
-    Route::get('/create', [BookController::class, 'create'])->name('create');
+    Route::post('/', [BookController::class, 'store'])->middleware('auth')->name('store');
+    Route::get('/create', [BookController::class, 'create'])->middleware('auth')->name('create');
     Route::get('/{isbn}', [BookController::class, 'show'])->name('show');
     Route::get('/{isbn}/edit', [BookController::class, 'edit'])->name('edit');
     Route::put('/{isbn}', [BookController::class, 'update'])->name('update');
