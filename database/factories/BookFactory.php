@@ -20,7 +20,7 @@ class BookFactory extends Factory
         return [
             "isbn" => fake()->isbn13(),
             "title" => fake()->words(5, true),
-            "author" => fake()->name(),
+            "author_id" => rand(1, 50),
             "image_path" => fake()->imageUrl(),
             "publisher" => fake()->company(),
             "category" => fake()->colorName(),

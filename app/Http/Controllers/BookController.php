@@ -21,7 +21,7 @@ class BookController extends Controller
     public function show($isbn)
     {
 
-        $selectedBook = Book::find($isbn);
+        $selectedBook = Book::with('author')->find($isbn);
         if ($selectedBook) {
             return view('books.detail', [
                 "book" => $selectedBook
