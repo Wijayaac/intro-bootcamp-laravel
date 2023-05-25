@@ -24,3 +24,7 @@ Route::name('books.')->prefix('books')->group(function () {
     Route::put('/{isbn}', [BookController::class, 'update'])->name('update');
     Route::delete('/{isbn}', [BookController::class, 'destroy'])->name('destroy');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

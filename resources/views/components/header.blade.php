@@ -22,9 +22,12 @@
                 <!-- <button type="submit" class="btn btn-default"></button> -->
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{{ route('books.create') }}">Add Book</a></li>
-                <li><a href="./login.html">Login</a></li>
-                <li class="disabled"><a href="#">Signup</a></li>
+                @guest
+                    <li><a href="./login.html">Login</a></li>
+                @else
+                    <li><a href="{{ route('books.create') }}">Add Book</a></li>
+                    <li class="disabled"><a href="#">Signup</a></li>
+                @endguest
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
