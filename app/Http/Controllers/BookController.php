@@ -92,6 +92,7 @@ class BookController extends Controller
     public function destroy($isbn)
     {
         $book = Book::find($isbn);
+        $this->authorize('update-book', $book);
         if ($book) {
             $book->delete();
         }
