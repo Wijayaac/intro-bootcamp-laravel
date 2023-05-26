@@ -2,6 +2,11 @@
 
 @section('title', 'Home')
 @section('content')
+    @if (session('status'))
+        <div class="alert alert-success">
+            {{ session('status') }}
+        </div>
+    @endif
     <div class="row">
         @foreach ($books->items() as $book)
             <!--  item -->

@@ -44,7 +44,7 @@ class BookController extends Controller
             ]);
         }
 
-        return redirect('/');
+        return redirect('/')->with('status', 'Data not found redirected to home!');
     }
 
     public function create()
@@ -58,7 +58,7 @@ class BookController extends Controller
 
         $book = new Book();
         $book->create($validated);
-        return redirect('/');
+        return redirect('/')->with('status', 'Books data loaded!');
     }
 
     public function edit($isbn)
@@ -86,7 +86,7 @@ class BookController extends Controller
         if ($book) {
             $book->update($validated);
         }
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('status', 'Data has been updated!');
     }
 
     public function destroy($isbn)
@@ -96,6 +96,6 @@ class BookController extends Controller
             $book->delete();
         }
 
-        return redirect('/');
+        return redirect('/')->with('status', 'Data has been deleted!');
     }
 }
