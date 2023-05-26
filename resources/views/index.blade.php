@@ -20,7 +20,7 @@
                         {{ substr(strip_tags($book['desc']), 0, 150) }}
                         {{ strlen(strip_tags($book['desc'])) > 50 ? '...' : '' }}
                         <div class="card__cta">
-                            <a href=" {{ route('books.show', ['isbn' => $book['isbn']]) }}" class="btn btn-default" role="button">Show Detail</a>
+                            <a href=" {{ route('books.show', ['isbn' => $book['isbn']]) }}" class="btn btn-info" role="button">Show Detail</a>
                         </div>
                     </div>
                 </div>

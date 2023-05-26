@@ -2,7 +2,7 @@
 
 @section('title', "Detail {$book['title']}")
 @section('content')
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-sm-12 col-md-10 col-md-offset-1">
             <div class="main-product">
                 <div class="row">
@@ -32,21 +32,23 @@
                                 <p>ISBN <b>{{ $book['isbn'] }}</b></p>
 
                                 <div class="main-product__cta">
-                                    <a href="#" class="btn btn-default mt-10 mb-10" role="button">Borrow</a>
+                                    <a href="#" class="btn btn-secondary mt-10 mb-10" role="button">Borrow</a>
                                 </div>
-                                <div class="main-product__action d-flex">
+                                <div class="main-product__action d-flex gap-2">
                                     @guest
                                     @else
                                         @if (Auth::user()->id === $book['user_id'])
-                                            <a href="{{ route('books.edit', ['isbn' => $book['isbn']]) }}" class="btn btn-warning mx-2">Edit</a>
+                                            <div>
+                                                <a href="{{ route('books.edit', ['isbn' => $book['isbn']]) }}" class="btn btn-warning">Edit</a>
+                                            </div>
                                             <form action="{{ url('/books', ['isbn' => $book['isbn']]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input class="btn btn-danger" type="submit" value="Delete" />
                                             </form>
                                         @else
-                                            <button disabled="disabled" class="btn btn-warning mx-2">Edit</button>
-                                            <button disabled="disabled" class="btn btn-danger mx-2">Delete</button>
+                                            <button disabled="disabled" class="btn btn-warning">Edit</button>
+                                            <button disabled="disabled" class="btn btn-danger">Delete</button>
                                         @endif
                                     @endguest
                                 </div>

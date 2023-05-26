@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default mt-5 bg-white py-5">
     <div class="panel-footer">
         <div class="row">
             <div class="col-sm-12 col-md-4">
