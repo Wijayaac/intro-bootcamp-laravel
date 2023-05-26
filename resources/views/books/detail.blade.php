@@ -16,6 +16,8 @@
                         <div class="main-product__detail">
                             <h2><b>{{ $book['title'] }}</b></h2>
                             <p><small>by</small> <a href="#" class="h-link">{{ $book['author']->name }}</a></p>
+
+                            <p><small>added by</small> {{ $book->user ? $book->user['name'] : 'Dummy' }}</p>
                             <div class="pt-20">
                                 <p>Publisher : <a href="#" class="h-link">{{ $book['publisher'] }}</a></p>
                                 <p>Category : <a href="#" class="h-link">{{ $book['category'] }}</a></p>
@@ -33,12 +35,20 @@
                                     <a href="#" class="btn btn-default mt-10 mb-10" role="button">Borrow</a>
                                 </div>
                                 <div class="main-product__action d-flex">
-                                    <a href="{{ route('books.edit', ['isbn' => $book['isbn']]) }}" class="btn btn-warning mx-2">Edit</a>
-                                    <form action="{{ url('/books', ['isbn' => $book['isbn']]) }}" method="post">
-                                        @csrf
-                                        @method('DELETE')
-                                        <input class="btn btn-danger" type="submit" value="Delete" />
-                                    </form>
+                                    @guest
+                                    @else
+                                        @if (Auth::user()->id === $book['user_id'])
+                                            <a href="{{ route('books.edit', ['isbn' => $book['isbn']]) }}" class="btn btn-warning mx-2">Edit</a>
+                                            <form action="{{ url('/books', ['isbn' => $book['isbn']]) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <input class="btn btn-danger" type="submit" value="Delete" />
+                                            </form>
+                                        @else
+                                            <button disabled="disabled" class="btn btn-warning mx-2">Edit</button>
+                                            <button disabled="disabled" class="btn btn-danger mx-2">Delete</button>
+                                        @endif
+                                    @endguest
                                 </div>
                             </div>
                         </div>

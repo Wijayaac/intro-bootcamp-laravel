@@ -24,7 +24,8 @@ class BookPostRequest extends FormRequest
         return [
             "isbn"          => 'required|min:10|max:13',
             "title"         => 'required|max:250',
-            "author"        => 'required|max:150',
+            "author_id"     => 'required|max:11',
+            "user_id"     => 'required|max:11',
             "image_path"    => 'required|max:100',
             "publisher"     => 'required|max:50',
             "category"      => 'required|max:50',

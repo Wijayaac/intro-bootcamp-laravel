@@ -12,9 +12,9 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
             </ul>
-            <form class="navbar-form navbar-left">
+            <form class="navbar-form navbar-left" action="/" method="GET">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" name="search" placeholder="Search">
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </div>

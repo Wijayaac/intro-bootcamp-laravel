@@ -20,9 +20,9 @@ Route::name('books.')->prefix('books')->group(function () {
     Route::post('/', [BookController::class, 'store'])->middleware('auth')->name('store');
     Route::get('/create', [BookController::class, 'create'])->middleware('auth')->name('create');
     Route::get('/{isbn}', [BookController::class, 'show'])->name('show');
-    Route::get('/{isbn}/edit', [BookController::class, 'edit'])->name('edit');
-    Route::put('/{isbn}', [BookController::class, 'update'])->name('update');
-    Route::delete('/{isbn}', [BookController::class, 'destroy'])->name('destroy');
+    Route::get('/{isbn}/edit', [BookController::class, 'edit'])->middleware('auth')->name('edit');
+    Route::put('/{isbn}', [BookController::class, 'update'])->middleware('auth')->name('update');
+    Route::delete('/{isbn}', [BookController::class, 'destroy'])->middleware('auth')->name('destroy');
 });
 
 Auth::routes();

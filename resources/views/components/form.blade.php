@@ -1,4 +1,5 @@
  <div class="input__field">
+     <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
      <label for="isbn">ISBN</label>
      <input type="text" name="isbn" value="{{ $isUpdate ? $book['isbn'] : old('isbn') }}" id="isbn">
  </div>
@@ -8,7 +9,7 @@
  </div>
  <div class="input__field">
      <label for="author">Author</label>
-     <input type="text" name="author" value="{{ $isUpdate ? $book['author'] : old('author') }}" id="author">
+     <input type="number" name="author_id" value="{{ $isUpdate ? $book['author_id'] : old('author_id') }}" id="author">
  </div>
  <div class="input__field">
      <label for="image_path">Image URL / path</label>
@@ -39,10 +40,12 @@
      <input type="text" name="subjects" value="{{ $isUpdate ? $book['subjects'] : old('subjects') }}" id="subjects">
  </div>
  <div class="input__field">
-     <label for="description">ISBN</label>
+     <label for="description">Description</label>
      <textarea name="desc" id="description" rows="10">
 @if ($isUpdate)
 {{ $book['desc'] }}
+@else
+{{ old('desc') }}
 @endif
     </textarea>
  </div>

@@ -4,14 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BookPostRequest;
 use App\Models\Book;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
     private $books = [];
 
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->has('search')) {
+            $keyword = $request->search;
+            $books = Book::whereHas('author', function (Builder $query) use ($keyword) {
+                $query->where('isbn', 'LIKE', "%$keyword%")->orWhere('title', 'LIKE', "%$keyword%")->orWhere('name', 'LIKE', "%$keyword%");
+            })->paginate(12);
+
+            $this->books = $books;
+
+            return view("index", [
+                'books' => $this->books,
+            ]);
+        }
+
         $books = new Book();
+
         $this->books = $books->paginate(12);
         return view("index", [
             'books' => $this->books,
@@ -21,7 +37,7 @@ class BookController extends Controller
     public function show($isbn)
     {
 
-        $selectedBook = Book::with('author')->find($isbn);
+        $selectedBook = Book::with('author')->with('user')->find($isbn);
         if ($selectedBook) {
             return view('books.detail', [
                 "book" => $selectedBook
@@ -42,12 +58,15 @@ class BookController extends Controller
 
         $book = new Book();
         $book->create($validated);
-        return redirect()->route('books.index');
+        return redirect('/');
     }
 
     public function edit($isbn)
     {
         $book = Book::find($isbn);
+
+        $this->authorize('update-book', $book);
+
         if (!$book) {
             return redirect('/');
         }
@@ -61,6 +80,9 @@ class BookController extends Controller
     {
         $validated = $request->validated();
         $book = Book::find($isbn);
+
+        $this->authorize('update-book', $book);
+
         if ($book) {
             $book->update($validated);
         }

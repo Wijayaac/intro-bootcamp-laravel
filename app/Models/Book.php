@@ -16,7 +16,7 @@ class Book extends Model
     protected $fillable = [
         "isbn",
         "title",
-        "author",
+        "author_id",
         "image_path",
         "publisher",
         "category",
@@ -25,10 +25,16 @@ class Book extends Model
         "publish_date",
         "subjects",
         "desc",
+        "user_id"
     ];
 
     public function author(): BelongsTo
     {
         return $this->belongsTo(Author::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
